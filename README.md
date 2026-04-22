@@ -8,16 +8,6 @@
 
 ---
 
-## Table of Contents
-
-1. [Project Overview](#project-overview)
-2. [How to Build and Run](#how-to-build-and-run)
-3. [API Endpoints Reference](#api-endpoints-reference)
-4. [Sample curl Commands](#sample-curl-commands)
-5. [Report – Written Answers](#report--written-answers)
-
----
-
 ## Project Overview
 
 This project implements a RESTful API for the Smart Campus Sensor and Room
