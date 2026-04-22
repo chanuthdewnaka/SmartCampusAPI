@@ -20,24 +20,7 @@ public class DataStore {
 
     // Private constructor — prevents creating multiple instances
     private DataStore() {
-        // Add some sample data so the API is not empty when you start
-        Room r1 = new Room("LIB-301", "Library Quiet Study", 50);
-        Room r2 = new Room("LAB-101", "Computer Lab", 30);
-        rooms.put(r1.getId(), r1);
-        rooms.put(r2.getId(), r2);
-
-        Sensor s1 = new Sensor("TEMP-001", "Temperature", "ACTIVE", 22.5, "LIB-301");
-        Sensor s2 = new Sensor("CO2-001", "CO2", "ACTIVE", 400.0, "LAB-101");
-        sensors.put(s1.getId(), s1);
-        sensors.put(s2.getId(), s2);
-
-        // Link sensors to rooms
-        r1.getSensorIds().add(s1.getId());
-        r2.getSensorIds().add(s2.getId());
-
-        // Initialise empty reading lists for each sensor
-        sensorReadings.put(s1.getId(), new ArrayList<>());
-        sensorReadings.put(s2.getId(), new ArrayList<>());
+        // Starts completely empty, manual creation needed for tests
     }
 
     // This is how other classes get access to the DataStore
@@ -46,11 +29,17 @@ public class DataStore {
     }
 
     // --- Room methods ---
-    public Map<String, Room> getRooms() { return rooms; }
+    public Map<String, Room> getRooms() {
+        return rooms;
+    }
 
-    public Room getRoomById(String id) { return rooms.get(id); }
+    public Room getRoomById(String id) {
+        return rooms.get(id);
+    }
 
-    public void addRoom(Room room) { rooms.put(room.getId(), room); }
+    public void addRoom(Room room) {
+        rooms.put(room.getId(), room);
+    }
 
     public boolean deleteRoom(String id) {
         if (rooms.containsKey(id)) {
@@ -61,9 +50,13 @@ public class DataStore {
     }
 
     // --- Sensor methods ---
-    public Map<String, Sensor> getSensors() { return sensors; }
+    public Map<String, Sensor> getSensors() {
+        return sensors;
+    }
 
-    public Sensor getSensorById(String id) { return sensors.get(id); }
+    public Sensor getSensorById(String id) {
+        return sensors.get(id);
+    }
 
     public void addSensor(Sensor sensor) {
         sensors.put(sensor.getId(), sensor);

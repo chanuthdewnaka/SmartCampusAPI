@@ -8,6 +8,9 @@ import com.example.model.Room;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriInfo;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,9 +31,15 @@ public class RoomResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addRoom(Room room) {
+    public Response addRoom(Room room, @Context UriInfo uriInfo) {
         dataStore.addRoom(room);
-        return Response.status(201).entity(room).build();
+
+        // Build the Location header URL pointing to the new room
+        URI location = uriInfo.getAbsolutePathBuilder()
+                              .path(room.getId())
+                              .build();
+
+        return Response.created(location).entity(room).build();
     }
 
     // GET /api/v1/rooms/{roomId} — returns a specific room
